@@ -100,7 +100,7 @@ def main():
         os.makedirs(data_folder)
 
     # Save to the 'data' folder
-    output_path = os.path.join(data_folder, 'reviews.csv')
+    output_path = os.path.join(data_folder, 'reviews_raw.csv')
     review_data.to_csv(output_path, index=False)
     print(f'CSV saved as "{output_path}"')
 

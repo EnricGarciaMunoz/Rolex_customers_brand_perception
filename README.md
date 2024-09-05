@@ -2,100 +2,97 @@
 
 ![customer_review](images/customer_review.png)
 
-### ML Project to analyze Rolex points of Success 
+### ML Project to analyze Rolex's key Success Drivers 
 
-One of the key points for a brand success is the customer satisfation. When we have a small online business, it could be easy to determine what does the customer think about you, getting the opportunity solve your waekest points. But this task isn't that easy with a big company. Today we're focusing on detecting those pain points on a huge company like Rolex.
+One of the key factors for a brand's success is customer satisfaction. When running a small online business, it can be relatively easy to determine what customers think about you, giving you the opportunity to address your weakest points. However, this task becomes much more challenging for a large company. Today, we are focusing on identifying these pain points in a major company like Rolex.
 
-To get to know what customer think about our brand, there is different ways: reviews, emails, customer service tickets,... But nowadays, there is a website that has earned so much reliability when reviewing a brand, and that's [Trustpilot](https://www.trustpilot.com/). The opinions posted on this website are usually consistent, and they have a big community of people that is really engaged whith the website.
+To understand what customers think about our brand, there are various methods: reviews, emails, customer service tickets, etc. However, nowadays, one website has gained significant reliability for reviewing brands: [Trustpilot](https://www.trustpilot.com/). The opinions posted on this site are generally consistent, and it has a large and highly engaged community.
 
-As this is one of the most relevant sources of information that I can get, we'll be using this website to get reviews of Rolex previous customers. 
+Since this is one of the most relevant sources of information available, we will use this website to gather reviews from Rolex's previous customers.
 
-The main goal of the project is going to be determining the mainreasons that cause bad reviews, so what we'll be doing is to categorize reviews whether they are googd or bad, and then count relevant words, to determine which of them are most used. This will tell us the main pain points.
+The main goal of the project is to determine the primary reasons behind negative reviews. We will categorize the reviews as either good or bad, then count the relevant words to identify the most frequently used ones. This will help us identify the main pain points.
 
-Unfortunately, Rolex doesn't have great reviews on their[Trustpilot Page](https://www.trustpilot.com/review/www.rolex.com). 
+Unfortunately, Rolex doesn't have great reviews on its [Trustpilot Page](https://www.trustpilot.com/review/www.rolex.com). 
 
 ![Trustpilot_reviews](images/Trustpilot_reviews.PNG). 
 
-That's why it could be really interesting to analyse the reviews and try to understand the points where they should improve as a company.
+That's why it could be very interesting to analyze the reviews and understand the areas where the company could improve.
 
-To do this project, there's is three clear steps that we need to get the main pain points:
+To carry out this project, there are three clear steps we need to follow to identify the main pain points:
 
-## Steps of the project
+## Project Steps
 
 * Trustpilot scraping
-* Sentiment Analysis on Reviews
-* Relevant word counting and pain point determination
+* Data Cleaning
+* Sentiment Analysis of Reviews
+* Counting Relevant Words and Determining Pain Points
 
 
 ### Trustpilot Scraping 
 
-This step requires to understant how the Trustpilot is structured. In this step, we're getting every review, and storing the information in [reviews.csv](data/reviews.csv). Every row on that csv file represents a review from a customer, and the information we're getting is:
+This step involves understanding how Trustpilot is structured. In this phase, we retrieve every review and store the information in the [reviews.csv](data/reviews.csv) file. Each row in this CSV file represents a review from a customer, and the information collected includes:
 
-- username
-- Total reviews
-- Location
-- Date
-- content
+- "Username": Name of the user who wrote the review
+- "Total Reviews": Number of reviews the user has submitted
+- "Location": Country code of the user who wrote the review
+- "Date": Date of the review
+- "Content": Content of the review
+- "Rating": Score given in the review
 
-To get the trustpilot result, you need to run the [1_trustpilot_scrapping](scripts/1_trustpilot_scrapping.py) script.
+To obtain the Trustpilot results, you need to run the [1_trustpilot_scrapping](scripts/1_trustpilot_scrapping.py) script.
+
+
+### Data Cleaning
+
+There is one process that needs to be completed. At the end of the "Content" column values, there is always a consistent string: "Date of the experience": followed by the date when the user had the experience. In a more complex process, we would use this information for further analysis. However, for now, we will simply remove this data to simplify our analysis.
 
 
 ### Sentiment Analysis on Reviews
 
-What a sentiment analysis script does is to categorize text wether is positive or not.
+A sentiment analysis script categorizes text as positive or negative.
 
 ![Sentiment_analysis](images/Sentiment_analysis.png)
 
-But, why are we using this process, if we have the Trustpilot score just doing webscraping?
+But why are we using this process if we already have the Trustpilot score from web scraping?
 
-We know that sometimes comments don't match exactly with their score. There are optimistic people that had issues with our services, but gives us 4 out of 5 stars. Others may do the opposite. Taking this into account, we are going to analyze the reviews with 1 or 2 stars as score, or those with a negative score on sentiment anaylsis.
+We know that sometimes comments don't exactly match their scores. There are optimistic individuals who had issues with our services but give us 4 out of 5 stars, while others may do the opposite. Taking this into account, we will analyze the reviews with 1 or 2 stars or those with a negative sentiment score.
 
- To de this sentiment analysis, there are many libraries in python that gets different results. The one I've chosen is Textblob. This is a llibrary that is pretty easy to use compared to others, and gives us two scores on a specific text:
+To perform this sentiment analysis, there are many Python libraries available that produce varying results. The one I've chosen is TextBlob. This library is relatively easy to use compared to others and provides two scores for a given text:
 
- - Polarity: Categorizes a comment whether is positive or not, being 1 the most positive text possible, and -1 the most negative one.
- - Subjectivity: Gives a score from 0 to 1, being 0 the most objective comment, and 1 the most 
+ - Polarity: Categorizes a comment as positive or negative, with 1 being the most positive and -1 being the most negative.
+ - Subjectivity: Scores the comment from 0 to 1, where 0 indicates the most objective comment and 1 indicates the most subjective.
 
-The result is stored in [reviews_with_emotion_score](data/reviews_with_emotion_score.csv).
+The results are stored in [reviews_with_emotion_score](data/reviews_with_emotion_score.csv).
 
 
 ### Relevant word counting and pain point determination
 
-As mentioned before, we can now take these reviews and count the words that appear on those reviews. Is almost impossible to remove all the irrelevant words on reviews. but after running the script we'll be able to determine the pain ponits of the company. We're doing this process with nltk library.
+As mentioned before, we can now analyze these reviews and count the words that appear. It is almost impossible to remove all irrelevant words from the reviews, but after running the script, we will be able to determine the company's pain points by selecting the most meaningful words. We are using the NLTK library for this process.
 
-Without further ado, let's see the Top 20 words used in comments:
+Without further ado, let’s look at the Top 20 words used in the comments:
 
 ![negative_reviews_word_count](images/negative_reviews_word_count.png)
 
-we can see some relevant words in this chart:
+We can see some relevant words in this chart that are significant when considering a bad experience:
 
-- experience
-- customer
-- return
 - service
-- product
-- item
-- quality
+- customer
+- store
+- experience
 
-That seems to indicate that the main pain points in Siroko are related with the returning system, and product quality.
+These terms suggest that the main pain points for Rolex are related to customer service and the buying experience, particularly in stores.
 
 
 ## Conclusions
 
-We have seen how, from a huge amount of reviews to be analysed manually, we were able to get the main pain points of our customers. 
+We have demonstrated how, from a large volume of reviews that would be challenging to analyze manually, we can identify the main pain points of our customers.
 
-I strongly believe this is a super powerful tool for a huge variety of companies. I'll work on new versions of this code to make it even more reliable, and help companies get the best of their data!
-
-
-### Generic solution
-
-This scripts are made to analyse Siroko company, but you may need to analyse other companies. To do so, there's a script called [1_trustpilot_scrapping_generic](scripts/1_trustpilot_scrapping_generic.py), in which you can use different companies that are on Trustpilot. To do so, you need to determine the comany domain and the number of pages that the review have on Trustpilot, stored on [company](source/company.txt) and [number_of_review_pages](source/number_of_review_pages.txt), respectively. 
-
-To get the top 20 negative words, you just need to run the script mentioned, and then the second and third scripts, as we did in the Siroko example.
+This approach could be made much more powerful. For example, we could categorize negative words by type, compare these reviews with those of other brands, conduct the analysis across different countries, and display the results on a dashboard. However, the goal of this project was to illustrate how I could contribute to your company.
 
 
 ## Project file Structure
 
-- `data/`: Contains the Data generated from the scripts, "revies.csv" and "reviews_with_emotion_score.csv".
+- `data/`: Contains the Data generated from the scripts,"reviews_raw.csv", "revies.csv" and "reviews_with_emotion_score.csv".
 - `images/`: all the pictures used on the project
 - `scripts/`: Contains the scripts to run the solution. Just to mention, the numbers indicates the order of execution of the scripts
 - `source/`: the txt files to determine in order to run the generic script
@@ -137,6 +134,13 @@ Run the Trustpilot scraping script:
 ```bash
 python scripts/1_trustpilot_scraping.py
 ```
+
+Run the Data cleaning script:
+
+```bash
+python scripts/1_5_data_cleaning.py
+```
+
 Run the Sentiment Analysis script:
 
 ```bash
@@ -149,7 +153,7 @@ Run the Word Counting script:
 python scripts/3_word_counting.py
 ```
 
-This will run the entire solution.
 
+This will execute the entire solution.
 
-I hope you find this project interesting. I strongly encourage you to contact with me if you have any doubt. Thank you!
+I hope you find this project interesting. I strongly encourage you to contact me if you have any questions. Thank you!

@@ -16,7 +16,7 @@ nltk.download('wordnet')
 # Inicializar lematizador y lista de stopwords
 lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english'))
-additional_stopwords = {"back", "get", "would", "one", "never", "rolex", "watch", "year", "like", "day", "week", "said", "told", "could", "experience"}  # Agregar más stopwords si es necesario
+additional_stopwords = {"back", "get", "would", "one", "never", "rolex", "watch", "year", "like", "day", "week", "said", "told", "could"}  # Agregar más stopwords si es necesario
 stop_words.update(additional_stopwords)
 
 # Obtener la ruta absoluta del script
