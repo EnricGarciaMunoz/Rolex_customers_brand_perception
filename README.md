@@ -1,22 +1,22 @@
-# Customer Pain Points Detection using Sentiment Analysis
+# Rolex Customer Pain Points Detection using Sentiment Analysis
 
 ![customer_review](images/customer_review.png)
 
-### A Machine Learning Project that gives Insights on Brand perception by the customers
+### ML Project to analyze Rolex points of Success 
 
-One of the key points for a brand success is the customer satisfation on companies services or products. In fact, it may be the most impactful thing in business development in long term. When we have a small online business, it could be easy to determine what customer think about you, to promote your strongest points, and to solve your waekest points. Today we're focusing on these weakest points.
+One of the key points for a brand success is the customer satisfation. When we have a small online business, it could be easy to determine what does the customer think about you, getting the opportunity solve your waekest points. But this task isn't that easy with a big company. Today we're focusing on detecting those pain points on a huge company like Rolex.
 
-There are different companies that let customers vote and express their satisfaction (or the lack of it) with a specific brand. Between all this companies, there is one spacially relevant for the quantity of users that post consistently on their webpage, and this webpage is [Trustpilot](https://www.trustpilot.com/). The opinions posted on this website are usually consistent.
+To get to know what customer think about our brand, there is different ways: reviews, emails, customer service tickets,... But nowadays, there is a website that has earned so much reliability when reviewing a brand, and that's [Trustpilot](https://www.trustpilot.com/). The opinions posted on this website are usually consistent, and they have a big community of people that is really engaged whith the website.
 
-Today we are going to be using this website to get the reviews from a companies customer, then analyse the comments whether they are positive or negative (Sentiment analysis), and finally get the worst reviews and count relevant words that define the category of the review (price, experience, delivery,...).
+As this is one of the most relevant sources of information that I can get, we'll be using this website to get reviews of Rolex previous customers. 
 
-For this project, we've chosen an spanish cycling online store, called [Siroko](https://www.siroko.com/es/). This is a well known company between the cycling community, and recently they have grown so much. 
+The main goal of the project is going to be determining the mainreasons that cause bad reviews, so what we'll be doing is to categorize reviews whether they are googd or bad, and then count relevant words, to determine which of them are most used. This will tell us the main pain points.
 
-Unfortunately, Siroko doesn't have great reviews on their[Trustpilot Page](https://www.trustpilot.com/review/www.siroko.com). 
+Unfortunately, Rolex doesn't have great reviews on their[Trustpilot Page](https://www.trustpilot.com/review/www.rolex.com). 
 
 ![Trustpilot_reviews](images/Trustpilot_reviews.PNG). 
 
-That's why it could be really interesting for them to analyse the reviews and try to understand the points where they should improve as a company.
+That's why it could be really interesting to analyse the reviews and try to understand the points where they should improve as a company.
 
 To do this project, there's is three clear steps that we need to get the main pain points:
 
